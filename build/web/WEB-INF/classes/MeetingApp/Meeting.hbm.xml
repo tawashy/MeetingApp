@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 15, 2017 9:22:31 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="MeetingApp.Meeting" table="meeting" catalog="meeting_db" optimistic-lock="version">
+        <id name="meetingId" type="java.lang.Integer">
+            <column name="MEETING_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="host" class="MeetingApp.Host" fetch="select">
+            <column name="HOST_EMAIL" length="180" not-null="true" />
+        </many-to-one>
+        <property name="meetingName" type="string">
+            <column name="MEETING_NAME" length="45" not-null="true" />
+        </property>
+        <property name="meetingDesc" type="string">
+            <column name="MEETING_DESC" length="180" not-null="true" />
+        </property>
+        <property name="meetingDate" type="date">
+            <column name="MEETING_DATE" length="10" not-null="true" />
+        </property>
+        <property name="meetingTime" type="time">
+            <column name="MEETING_TIME" length="8" not-null="true" />
+        </property>
+        <property name="meetingLocation" type="string">
+            <column name="MEETING_LOCATION" length="45" not-null="true" />
+        </property>
+        <set name="partMeetings" table="part_meeting" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="MEETING_MEETING_ID" not-null="true" />
+            </key>
+            <one-to-many class="MeetingApp.PartMeeting" />
+        </set>
+    </class>
+</hibernate-mapping>

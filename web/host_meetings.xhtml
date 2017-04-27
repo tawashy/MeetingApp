@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="host_template.xhtml">
+
+        <ui:define name="body">
+            <ol class="breadcrumb">
+                <li><h:link value="Home" outcome="index"/></li>
+                <li><h:link value="Host" outcome="host_login"/></li>
+                <li class="active">Meetings</li>
+            </ol>
+            <div class="well">
+            <h:form>
+                <span>
+                    <h:commandLink action="#{meetingController.previous()}" value="Previous #{meetingController.pageSize}" rendered="#{meetingController.hasPreviousPage}"/>
+                </span>
+                <span>
+                    <h:commandLink action="#{meetingController.next()}" value="Next #{meetingController.pageSize}" rendered="#{meetingController.hasNextPage}"/>
+                </span>
+                <div class="form-group">
+                    <h:dataTable value="#{meetingController.meetingName}" var="item" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" class="table">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Meeting" />
+                        </f:facet>
+                        <h:outputText value="#{item.meetingName}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Date and Time" />
+                        </f:facet>
+                        <h:outputText value="#{item.meetingDate} " />
+                        
+                        <h:outputText value="( #{item.meetingTime} )" />
+                    </h:column>
+
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="" />
+                        </f:facet>
+                         
+                        <h:commandLink class="btn btn-info" action="#{meetingController.prepareView()}" value="View"/>
+                        
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="" />
+                        </f:facet>
+                        
+                        <h:commandLink class="btn btn-info" action="#{meetingController.delete()}" value="Delete" />
+                    </h:column>                                      
+                </h:dataTable>
+                    </div>
+            </h:form>
+                </div>
+            <h:button class="btn btn-info" id="create" value="Create Meeting" outcome="host_add_meeting" />
+        </ui:define>
+
+    </ui:composition>
+</html>

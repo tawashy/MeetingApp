@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="template.xhtml">
+
+    <ui:define name="body">
+        <ol class="breadcrumb">
+                <li><h:link value="Home" outcome="index"/></li>
+                <li><h:link value="Host" outcome="host_login"/></li>
+                <li class="active">Sign up</li>
+        </ol>
+        <div class="well">
+            <div class="form-group">
+                <h:form>
+                    <h:outputText value="Email" />
+                    <h:inputText class="form-control" id="email" value="#{hostController.email}"
+                                 size="50" maxlength="45" required="true" label="Email" />
+                    <h:message for="email" class="text text-danger" />
+
+                    <br/>
+                <h:commandButton class="btn btn-default btn-sm" id="submit" value="Add" action="host_add" />
+                <h:commandButton class="btn btn-default btn-sm" value="clear" type="reset" />
+            </h:form>
+            <h:outputText escape="false" value="#{hostController.response}" />
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            
+
+        </div>
+    </ui:define>
+
+</ui:composition>
+</html>

@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="host_template.xhtml">
+
+        <ui:define name="body">
+            <ol class="breadcrumb">
+                <li><h:link value="Home" outcome="index"/></li>
+                <li><h:link value="Participant" outcome="par_login"/></li>
+                <li><h:link value="Meeting" outcome="par_meetings"/></li>
+                <li class="active">Meeting Details</li>
+            </ol>
+            <div class="alert alert-success col-md-12">
+                <div class="col-md-6">
+                    <p class="h4">#{participantMeetingController.selected.meeting.meetingName}</p>
+                    
+                </div>                    
+            </div>
+            
+            <!-- Participant List -->
+            <div class="col-md-6">
+                <div class="alert alert-info">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Details</th>
+                                </tr>
+                            </thead>
+                             <tbody>      
+                                <tr>
+                                  <td>Description</td>
+                                  <td><h:outputText value="#{participantMeetingController.selected.meeting.meetingDesc}" /></td>
+                                </tr>
+                                <tr>
+                                  <td>Date</td>
+                                  <td><h:outputText value="#{participantMeetingController.selected.meeting.meetingDate}" /></td>
+
+                                </tr>
+                                <tr>
+                                  <td>Time</td>
+                                  <td><h:outputText value="#{participantMeetingController.selected.meeting.meetingTime}" /></td>
+
+                                </tr>
+                                <tr>
+                                  <td>Location</td>
+                                  <td><h:outputText value="#{participantMeetingController.selected.meeting.meetingLocation}" /></td>
+                                </tr>
+                              </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <p class="h6">
+                    Change the status [#{participantMeetingController.selected.status.statusType}] of 
+                    #{participantMeetingController.selected.meeting.meetingName}
+                </p>
+                <h:form>
+                    <h:selectOneMenu class=" input-sm" value = "#{participantMeetingController.statusType}">
+                        <f:selectItem itemValue = "MAYBE" itemLabel = "Maybe" /> 
+                        <f:selectItem itemValue = "YES" itemLabel = "Yes" /> 
+                        <f:selectItem itemValue = "NO" itemLabel = "No" /> 
+                    </h:selectOneMenu>  
+                <h:commandButton class="btn btn-primary right" value = "Submit" action = "#{participantMeetingController.statusUpdate()}" />
+                </h:form>
+                    
+            </div>                    
+
+
+        </ui:define>
+
+    </ui:composition>
+</html>

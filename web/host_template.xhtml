@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="/css/bootstrap.min.css"/> 
+        <h:outputStylesheet name="/css/styles.css"/> 
+        <title>Meeting Web App</title>
+    </h:head>
+
+    <h:body>
+        <!-- Navigation -->
+	   <nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+		<div class="container-fluid">
+
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <h:link class="navbar-brand" value="Meeting Web App" outcome="index"/>
+                    </div>
+                    <!-- /.navbar-header -->
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+                            <li><h:link value="Meeting" outcome="host_login"/></li>
+                            <li><h:link value="Participants" outcome="par_login"/></li>
+			</ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+		</div>
+                <!-- /.container-fluid -->
+            </nav>
+            <!-- /.navbar -->
+        <!-- Page Content -->
+	<div class="container-fluid">
+            <div class="row">
+		<div class="col-sm-12">
+
+                    <!-- Page breadcrumb 
+                    <ol class="breadcrumb">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Level 1 section</a></li>
+                        <li class="active">Level 2 sub-section</li>
+                    </ol>-->
+                    
+                    <ui:insert name="body">Content</ui:insert>
+                    
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- Bootstrap Core scripts -->
+        <h:outputScript name="js/bootstrap.min.js"/> 
+        <!-- JQuery scripts -->
+        <h:outputScript name="/js/bootstrap.js"/>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" />
+
+    </h:body>
+
+</html>
+
+
+
+

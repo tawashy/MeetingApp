@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+<ui:composition template="host_template.xhtml">
+
+        <ui:define name="body">
+            <ol class="breadcrumb">
+                <li><h:link value="Meetings" outcome="host_meetings"/></li>
+                <li><h:link value="Meeting Details" outcome="host_meeting_details"/></li>
+                <li class="active">Add Participant Form</li>
+            </ol>
+            
+ 
+            <div class="alert alert-info">
+                <h3>Enter a participant email to add to <strong>#{partMeetingController.meeting.meetingName}</strong> Meeting</h3>
+                    <h:form class="form-group-sm">
+                        <h:inputText value="#{partMeetingController.email}"/>
+                        <h:commandButton id="invite" value="Invite" action="host_invite_par"/>
+                    </h:form>
+                    <h:outputText escape="false" value="#{partMeetingController.response}" />
+            </div>
+        </ui:define>
+
+    </ui:composition>
+</html>

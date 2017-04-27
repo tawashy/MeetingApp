@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="host_template.xhtml">
+        <ui:define name="body">
+            <ol class="breadcrumb">
+                <li><h:link value="Home" outcome="index"/></li>
+                <li><h:link value="Host" outcome="host_login"/></li>
+                <li><h:link value="Meetings" outcome="host_meetings"/></li>
+                <li class="active">Meeting Details</li>
+            </ol>
+            <div class="col-lg-1 col-offset-6 centered">
+                <h4>#{meetingController.selected.meetingName}</h4>
+            </div>
+            <!-- Meeting Details -->
+            <div class="col-md-6">
+                <div class="alert alert-info">
+                    
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td><strong> Type </strong></td>
+                                    <td><strong> Detail  </strong></td>
+                                </tr>
+                            </thead>
+                             <tbody>      
+                                <tr>
+                                  <td>Description</td>
+                                  <td><h:outputText value="#{meetingController.selected.meetingDesc}" class="text-center"/></td>
+                                </tr>
+                                <tr>
+                                  <td>Date</td>
+                                  <td><h:outputText value="#{meetingController.selected.meetingDate}" /></td>
+
+                                </tr>
+                                <tr>
+                                  <td>Time</td>
+                                  <td><h:outputText value="#{meetingController.selected.meetingTime}" /></td>
+
+                                </tr>
+                                <tr>
+                                  <td>Location</td>
+                                  <td>#{meetingController.selected.meetingLocation}</td>
+                                </tr>
+                              </tbody>
+                        </table>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Participant List -->
+            <div class="col-md-6">
+                <div class="alert alert-success">
+                    <div class="table-responsive">
+                            <h:form>
+                                <h:dataTable value="#{meetingController.partMeetingList}" var="item" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" class="table">
+                                    <h:column>
+                                        <f:facet name="header">
+                                        <h:outputText value="Email" />
+                                        </f:facet>
+                                        <h:outputText value="#{item.part.partEmail}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                        <h:outputText value="Status" />
+                                        </f:facet>
+                                        <h:outputText value="#{item.status.statusType}" />
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header">
+                                        <h:outputText value="Action" />
+                                        </f:facet>
+                                        <h:commandLink class="btn btn-default" action="#{meetingController.deleteParticipant()}" value="Delete" />
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                    </div>
+                </div>
+                <h:form>
+                    <div class="col-sm-8">
+                        <h:inputText id="email" class="form-control" value="#{meetingController.partEmail}" required="true" label="Email"/>
+                        <h:message for="email" />
+                    </div>
+                    <div class="col-sm-3 pull-right">
+                        <h:commandButton class="btn btn-success pull-right" id="add" value="Invite Participants" action="#{meetingController.invite()}"/>
+                    </div>
+                    <br/>
+                    <div class="col-sm-11">
+                        <h:outputText escape="false" value="#{meetingController.partMsg}" />
+                    </div>
+                    
+                    
+                </h:form>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+</html>
